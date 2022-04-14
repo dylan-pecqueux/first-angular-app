@@ -5,16 +5,16 @@
     <div class="col-6">
       <h6 class="text-info text-center">Filtrer par prix</h6>
       <!-- deput formulaire filtre  -->
-      <form>
+      <form (ngSubmit)="getProductByPrice(filterForm)" #filterForm="ngForm">
         <div class="row">
           <div class="col-4">
             <div class="form-group">
-              <input type="number" class="form-control" placeholder="Prix min">
+              <input type="number" class="form-control" name="min" placeholder="Prix min" ngModel required>
             </div>
           </div>
           <div class="col-4">
             <div class="form-group">
-              <input type="number" class="form-control" placeholder="Prix max">
+              <input type="number" class="form-control" name="max" placeholder="Prix max" ngModel required>
             </div>
           </div>
           <div class="col-4">

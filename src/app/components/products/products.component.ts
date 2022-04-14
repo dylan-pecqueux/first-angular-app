@@ -50,4 +50,11 @@ export class ProductsComponent implements OnInit {
       this.goToPage(this.actualPage);
     })
   }
+
+  getProductByPrice(filterForm: any) {
+    const data = filterForm.value;
+    this.productsService.filterProductByPrice(data).subscribe(data => {
+      this.products = data;
+    })
+  }
 }

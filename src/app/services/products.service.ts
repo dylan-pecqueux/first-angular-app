@@ -25,4 +25,8 @@ export class ProductsService {
   updateProduct(id: number, available: any) {
     return this.http.patch(`http://localhost:3000/products/${id}`, {available: !available})
   }
+
+  filterProductByPrice(data: any) {
+    return this.http.get(`http://localhost:3000/products?price_gte=${data.min}&price_lte=${data.max}`)
+  }
 }
