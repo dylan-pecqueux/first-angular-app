@@ -57,4 +57,11 @@ export class ProductsComponent implements OnInit {
       this.products = data;
     })
   }
+
+  filterByKeyword(keywordForm: any) {
+    const data = keywordForm.value;
+    this.productsService.getProductByKeyword(data).subscribe(data => {
+      this.products = data;
+    })
+  }
 }

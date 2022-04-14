@@ -27,11 +27,11 @@
     <div class="col-6">
       <h6 class="text-info text-center">Chercher par mot clés</h6>
       <!-- deput formulaire mot clé  -->
-      <form>
+      <form (ngSubmit)="filterByKeyword(keywordForm)" #keywordForm="ngForm">
         <div class="row">
           <div class="col-6">
             <div class="form-group">
-              <input type="text" class="form-control" placeholder="Rechercher">
+              <input type="text" class="form-control" name="search" placeholder="Rechercher" ngModel required>
             </div>
           </div>
           <div class="col-6">

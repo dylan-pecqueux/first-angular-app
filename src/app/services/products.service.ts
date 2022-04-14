@@ -29,4 +29,8 @@ export class ProductsService {
   filterProductByPrice(data: any) {
     return this.http.get(`http://localhost:3000/products?price_gte=${data.min}&price_lte=${data.max}`)
   }
+
+  getProductByKeyword(data: any) {
+    return this.http.get(`http://localhost:3000/products?q=${data.search}`)
+  }
 }
