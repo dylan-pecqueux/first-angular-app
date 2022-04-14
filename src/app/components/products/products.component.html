@@ -1,0 +1,79 @@
+<div class="container">
+  <h1 class="text-center text-warning mt-4 mb-4">La liste de mes produits : {{products && products.length}}</h1>
+
+  <div class="row">
+    <div class="col-6">
+      <h6 class="text-info text-center">Filtrer par prix</h6>
+      <!-- deput formulaire filtre  -->
+      <form>
+        <div class="row">
+          <div class="col-4">
+            <div class="form-group">
+              <input type="number" class="form-control" placeholder="Prix min">
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <input type="number" class="form-control" placeholder="Prix max">
+            </div>
+          </div>
+          <div class="col-4">
+            <button type="submit" class="btn btn-primary">Chercher par prix</button>
+          </div>
+        </div>
+      </form>
+      <!-- fin form -->
+    </div>
+    <div class="col-6">
+      <h6 class="text-info text-center">Chercher par mot clés</h6>
+      <!-- deput formulaire mot clé  -->
+      <form>
+        <div class="row">
+          <div class="col-6">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Rechercher">
+            </div>
+          </div>
+          <div class="col-6">
+            <button type="submit" class="btn btn-primary">Chercher par prix</button>
+          </div>
+        </div>
+      </form>
+      <!-- fin form -->
+    </div>
+  </div>
+  <section class="row mt-4">
+    <div class="text-center ml-4 mb-4 pl-4 pb-4 bg-success" *ngIf="display">
+      Vous venez de supprimer un produit
+    </div>
+    <div class="card col-4 m-2" style="width: 18rem;" *ngFor="let product of products">
+      <img src="{{product.image}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">{{product.title}}</h5>
+        <p class="card-text">{{product.description}}</p>
+        <div class="row">
+          <div class="col-3">
+            <a (click)="changeAvailable(product.id, product.available)">
+              <i class="card-text fa-solid available"
+                [ngClass]="{'text-success fa-thumbs-up': product.available, 'text-danger fa-thumbs-down': !product.available}"
+              >
+              </i>
+            </a>
+          </div>
+          <div class="col-3">
+            <a href="#" class="btn btn-primary">{{product.price}}€</a>
+          </div>
+          <div class="col-3">
+            <a (click)="delete(product.id)" class="btn btn-primary">Supprimer</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <a (click)="getPreviousPage()" [ngClass]="{'disabled': actualPage === 1}" class="btn btn-primary">page precedente</a>
+  <a (click)="goToPage(1)" [ngClass]="{'disabled': actualPage === 1}" class="btn btn-primary">1</a>
+  <a (click)="goToPage(2)" [ngClass]="{'disabled': actualPage === 2}" class="btn btn-primary">2</a>
+  <a (click)="goToPage(3)" [ngClass]="{'disabled': actualPage === 3}" class="btn btn-primary">3</a>
+  <a (click)="getProductsFromService()" [ngClass]="{'disabled': actualPage === 3}" class="btn btn-primary">page suivante</a>
+</div>
