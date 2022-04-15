@@ -22,10 +22,12 @@ export class ProductsComponent implements OnInit {
     price: 0,
     available: false
   };
+  isAuth = this.productsService.isAuth;
 
   constructor(private productsService: ProductsService) { }
 
   ngOnInit(): void {
+    this.isAuth
     this.getProductsFromService();
   }
 

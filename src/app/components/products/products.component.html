@@ -64,10 +64,10 @@
             <a href="#" class="btn btn-primary">{{product.price}}€</a>
           </div>
           <div class="col-3">
-            <a (click)="delete(product.id)" class="btn btn-danger">Supprimer</a>
+            <a (click)="delete(product.id)" class="btn btn-danger" *ngIf="isAuth">Supprimer</a>
           </div>
           <!-- Button trigger modal -->
-          <button type="button" (click)="editProduct(product)" class="btn btn-warning mt-4" data-toggle="modal" data-target="#exampleModal">
+          <button type="button" *ngIf="isAuth" (click)="editProduct(product)" class="btn btn-warning mt-4" data-toggle="modal" data-target="#exampleModal">
             Modifier
           </button>
         </div>

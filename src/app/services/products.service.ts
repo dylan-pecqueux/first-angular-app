@@ -9,6 +9,8 @@ export class ProductsService {
 
   constructor(private http: HttpClient) { }
 
+  isAuth = false;
+
   getProducts (page: number = 0) {
     // return this.http.get(`http://localhost:3000/products?_page=${page}&_limit=3`)
     return this.http.get(`http://localhost:3000/products`)
