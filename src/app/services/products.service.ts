@@ -31,6 +31,10 @@ export class ProductsService {
   }
 
   getProductByKeyword(data: any) {
-    return this.http.get(`http://localhost:3000/products?q=${data.search}`)
+    return this.http.get(`http://localhost:3000/products?q=${data}`)
+  }
+
+  updateProductFinal(data: any) {
+    return this.http.put(`http://localhost:3000/products/${data.id}`, data)
   }
 }

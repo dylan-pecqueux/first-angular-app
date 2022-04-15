@@ -16,8 +16,8 @@ export class AddProductComponent implements OnInit {
   // Enregistrement produits
   addProduct(product: any) {
     let data = product.value
-    this.productsService.newProduct(data).subscribe(() => {
-      console.log("success")
+    this.productsService.newProduct(data).subscribe((data) => {
+      console.log(data)
     });
   }
 }

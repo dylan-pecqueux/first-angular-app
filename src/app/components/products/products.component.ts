@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
+import { FormControl } from '@angular/forms';
+import { RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-products',
@@ -11,6 +13,15 @@ export class ProductsComponent implements OnInit {
   products: any;
   display: boolean = false;
   actualPage = 0;
+  search = new FormControl('');
+  newProduct = {
+    id: null,
+    title: "",
+    description: "",
+    image: "",
+    price: 0,
+    available: false
+  };
 
   constructor(private productsService: ProductsService) { }
 
@@ -58,10 +69,19 @@ export class ProductsComponent implements OnInit {
     })
   }
 
-  filterByKeyword(keywordForm: any) {
-    const data = keywordForm.value;
-    this.productsService.getProductByKeyword(data).subscribe(data => {
+  filterByKeyword() {
+    this.productsService.getProductByKeyword(this.search.value).subscribe(data => {
       this.products = data;
+    })
+  }
+
+  editProduct(product: any) {
+    this.newProduct = {...product};
+  }
+
+  updateProductForm() {
+    this.productsService.updateProductFinal(this.newProduct).subscribe(() => {
+      this.goToPage(this.actualPage);
     })
   }
 }
